@@ -1,18 +1,26 @@
 class SessionsController < ApplicationController
-  def new
-  end
-  
-  def create
-    customer = Customer.find_by(email: params[:session][:email].downcase)
-    if customer && customer[:password] == params[:session][:password]
-      session[:customer_id] = customer.id
-      redirect_to customer
-    else
-      flash[:error] = 'Invalid email/password combination'
-      render 'new'
+    def new
     end
-  end
 
-  def destroy
-  end
+    def create
+        params.require(:session)
+        customer = Customer.find_by(:email => params[:session][:email])
+        if customer and customer.password == params[:session][:password]
+            redirect_to customer
+        else
+            render status: :forbidden
+        end
+    end
+
+    def user_params
+        params.require(:customer).permit(
+            :name, :email, :password, :password_confirmation)
+    end
+
+    def destroy
+        session[:customer_id] = nil
+        flash[:success] = "You have logged out"
+        redirect_to root_path
+    end
 end
+

@@ -14,7 +14,6 @@ class CustomersController < ApplicationController
 
   # GET /customers/new
   def new
-    @customer = Customer.new
   end
 
   # GET /customers/1/edit
@@ -23,19 +22,17 @@ class CustomersController < ApplicationController
 
   # POST /customers
   # POST /customers.json
-  def create
-    @customer = Customer.new(customer_params)
+    def create
+        cparams = customer_params
 
-    respond_to do |format|
-      if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
-        format.json { render :show, status: :created, location: @customer }
-      else
-        format.html { render :new }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
+        if cparams[:password] != cparams[:password_confirmation]
+            raise "oh no"
+        end
+
+        customer = Customer.new(cparams.except(:password_confirmation)) # Not the final implementation!
+        customer.save!
+        redirect_to customer
     end
-  end
 
   # PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
@@ -64,11 +61,11 @@ class CustomersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.find(params[:id])
+     @customer = Customer.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:ssn, :fname, :lname, :email, :password)
+        params.require(:customer).permit(:name, :email, :password, :password_confirmation)
     end
 end

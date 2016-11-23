@@ -5,9 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Ssn</th>
-      <th>Fname</th>
-      <th>Lname</th>
+      <th>Name</th>
       <th>Email</th>
       <th>Password</th>
       <th colspan="3"></th>
@@ -16,10 +14,9 @@
 
   <tbody>
     <% @customers.each do |customer| %>
+
       <tr>
-        <td><%= customer.ssn %></td>
-        <td><%= customer.fname %></td>
-        <td><%= customer.lname %></td>
+        <td><%= customer.name %></td>
         <td><%= customer.email %></td>
         <td><%= customer.password %></td>
         <td><%= link_to 'Show', customer %></td>

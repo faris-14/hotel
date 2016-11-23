@@ -1,25 +1,28 @@
 <html>
-
-
+ <head>
 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
 <%= csrf_meta_tags %>
-
-
  
- <body>
-     
-     
+</head>
+
+<body>
+
 
  <%= render 'layouts/navigation' %>
  <h3 align="center">Home</h3>
 
 
+<div class="container">
 
+<%= yield %>
+
+</div>
 
 
 
 </body>
 
 </html>
+
+

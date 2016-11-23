@@ -10,10 +10,13 @@ Rails.application.routes.draw do
    get 'about' , to: 'pages#about'
    get 'contact' , to: 'pages#contact'
    #get 'login' , to: 'pages#login'
-   get 'register' , to: 'pages#register'
+   get 'register' , to: 'customers#new'
+   post 'register' , to: 'customers#create'
    get 'login',   to: 'sessions#new'
    post 'login',   to: 'sessions#create'
    delete 'logout',  to: 'sessions#destroy'
+
+   resources :customers, except: [:new]
    resources :customers
    resources :sessions
 
