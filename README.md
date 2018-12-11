@@ -12,11 +12,31 @@ Welcome to your Rails project on Cloud9 IDE!
 To get started, just do the following:
 
 1. Run the project with the "Run Project" button in the menu bar on top of the IDE.
-2. Preview your new app by clicking on the URL that appears in the Run panel below (https://hotel-system-malduniawi.c9users.io/).
 
 Happy coding!
 The Cloud9 IDE team
+ This is a Hotel room booking application
 
+# Rails Version
+  Rails 5.0.0.1
+
+# Ruby Version
+  Ruby 2.3.1
+
+# Database
+  MySQL
+
+# Run Gemfile
+	bundle install
+# Create Database
+	rails db:create
+# Run Migrations
+	rails db:migrate
+    Run Seed File
+# Seed Data for storing the rooms category and rooms information to the database
+	rails db:seed
+# Start Server
+	rails s
 
 ## Support & Documentation
 
